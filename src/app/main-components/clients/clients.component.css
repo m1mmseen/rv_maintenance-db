@@ -1,0 +1,11 @@
+.client {
+  cursor: pointer;
+  transition: 0.2s;
+  width: 25%;
+}
+
+.client:hover {
+  transform: scale3d(1.05, 1.05, 1);
+}
+
+/*# sourceMappingURL=clients.component.css.map */

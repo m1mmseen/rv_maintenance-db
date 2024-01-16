@@ -1,0 +1,61 @@
+@import "../../../SCSS/variables";
+
+.sidenav-container {
+  box-sizing: border-box;
+  width: 2.5rem;
+  box-shadow: 0 0 10px -5px #324A6D;
+  height: 100%;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+  position: relative;
+  z-index: 5;
+  transition: .5s;
+
+  &.expanded {
+    width: 12rem;
+  }
+}
+
+
+.minimal-menu{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.5rem;
+}
+
+.expanded-menu {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.expanded-nav-items {
+  display: flex;
+  flex-direction: row;
+  padding-inline: .5rem;
+  align-items: flex-end;
+
+  p {
+    margin: 0;
+    cursor: pointer;
+    font-size: 14px;
+    color: $primary;
+    font-weight: 600;
+    padding-left: .5rem;
+    transition: .5s;
+  }
+}
+
+.admin-menu {
+  position: absolute;
+  bottom: 10px;
+}
+mat-icon {
+  cursor: pointer;
+  color: #324A6D;
+}

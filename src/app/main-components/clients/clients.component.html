@@ -1,0 +1,37 @@
+
+  <div class="row align-items-start">
+    <div class="col-6">
+      <input type="text" placeholder="Suche nach Kunde oder Firma" class="form-control" [(ngModel)]="filter">
+    </div>
+    <div class="col-3">
+      <button class="btn btn-secondary">Suchen</button>
+    </div>
+    <div class="col-3">
+      <div class="dropdown w-100">
+        <button class="btn btn-secondary dropdown-toggle w-75 float-end" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Sortieren nach
+        </button>
+        <ul class="dropdown-menu w-100">
+          <li><a class="dropdown-item" (click)="setSortType('name')">Name</a></li>
+          <li><a class="dropdown-item" (click)="setSortType('company')">Firma</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row align-items-start mt-3">
+    <div class="col-sm-12 d-flex flex-wrap">
+      <div class="card me-2 mb-2 shadow-sm client" *ngFor="let client of clients | filter:filter:'name':'company' | sort:sortType">
+        <div class="card-header">
+          {{client.name}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{client.company}}</h5>
+          <p class="card-text">{{client.email}}</p>
+          <div class="badge bg-primary me-1" *ngFor="let device of client.devices">{{device.deviceName}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

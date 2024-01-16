@@ -1,0 +1,9 @@
+.client {
+  cursor: pointer;
+  transition: .2s;
+  width: 25%;
+}
+
+.client:hover {
+  transform: scale3d(1.05 , 1.05, 1);
+}

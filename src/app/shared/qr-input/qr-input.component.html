@@ -1,0 +1,21 @@
+<ngx-scanner-qrcode #scanner="scanner"
+                    [config]="
+                    {isBeep: true,
+                    vibrate: 300,
+                    constraints: {
+                      video: {
+                        facingMode: 'environment' }
+                      }
+                    }"
+                    (event)="terminate()">
+</ngx-scanner-qrcode>
+
+<div class="container-fluid flex-row justify-content-between py-3 w-75">
+  <form>
+    <div class="input-group flex-nowrap">
+      <input type="text" class="form-control" [formControl]="input"
+             value="{{scanner.data.value.at(0)?.value}}">
+      <span class="input-group-text" id="addon-wrapping"><mat-icon (click)="scanner.start()">qr_code</mat-icon></span>
+    </div>
+  </form>
+</div>

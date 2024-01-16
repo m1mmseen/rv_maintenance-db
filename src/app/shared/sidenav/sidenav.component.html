@@ -1,0 +1,114 @@
+<div class="sidenav-container">
+  <div class="menu-toggle">
+    <mat-icon
+      *ngIf="!expanded; else chevronLeft"
+      (click)="onExpand()"
+      id="menu-toggle">
+      chevron_right
+    </mat-icon>
+    <ng-template #chevronLeft>
+      <mat-icon (click)="onExpand()" id="chevron_left">chevron_left</mat-icon>
+    </ng-template>
+  </div>
+
+
+  <div *ngIf="!expanded; else expandedMenu"
+       class="minimal-menu">
+    <mat-icon
+      routerLink="">
+      home
+    </mat-icon>
+
+    <mat-icon
+      routerLink="clients">
+      person
+    </mat-icon>
+
+    <mat-icon
+      routerLink="add-device">
+      create
+    </mat-icon>
+
+    <mat-icon
+      routerLink="add-maintenance">
+      add_box
+    </mat-icon>
+
+    <mat-icon
+      routerLink="entries">
+      find_in_page
+    </mat-icon>
+
+
+  </div>
+
+  <ng-template #expandedMenu>
+    <div
+      class="expanded-menu">
+      <div class="expanded-nav-items">
+        <mat-icon>home</mat-icon>
+        <p routerLink="" class="firstP">Dashboard</p>
+      </div>
+
+      <div class="expanded-nav-items">
+        <mat-icon>person</mat-icon>
+        <p routerLink="clients">Kunden</p>
+      </div>
+
+      <div class="expanded-nav-items">
+        <mat-icon>create</mat-icon>
+        <p routerLink="add-device">Neues Gerät</p>
+      </div>
+
+
+      <div class="expanded-nav-items">
+        <mat-icon>add_box</mat-icon>
+        <p routerLink="add-maintenance">Wartung hinzufügen</p>
+      </div>
+
+
+      <div class="expanded-nav-items">
+        <mat-icon>find_in_page</mat-icon>
+        <p routerLink="entries">Alle Einträge</p>
+      </div>
+
+
+    </div>
+
+  </ng-template>
+
+
+  <div
+    class="admin-menu"
+    *ngIf="!expanded; else expandedAdminMenu">
+    <div class="minimal-menu">
+      <mat-icon
+        routerLink="clients/new-client">
+        person_add
+      </mat-icon>
+
+      <mat-icon
+        routerLink="add-deviceType">
+        category
+      </mat-icon>
+
+    </div>
+  </div>
+
+  <ng-template #expandedAdminMenu>
+
+    <div class="expanded-menu admin-menu">
+      <div class="expanded-nav-items">
+        <mat-icon>person_add</mat-icon>
+        <p routerLink="clients/new-client">Neuer Kunde</p>
+      </div>
+
+      <div class="expanded-nav-items">
+        <mat-icon>category</mat-icon>
+        <p routerLink="add-deviceType" class="newPerson">Neuer Gerätetyp</p>
+      </div>
+
+    </div>
+  </ng-template>
+</div>
+
