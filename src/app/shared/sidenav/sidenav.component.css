@@ -1,0 +1,58 @@
+.sidenav-container {
+  width: 2.5rem;
+  box-shadow: 0 0 10px -5px #324A6D;
+  height: 100%;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+  position: relative;
+  z-index: 5;
+  transition: 0.5s;
+}
+.sidenav-container.expanded {
+  width: 12rem;
+}
+
+.minimal-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.5rem;
+}
+
+.expanded-menu {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.expanded-nav-items {
+  display: flex;
+  flex-direction: row;
+  padding-inline: 0.5rem;
+  align-items: flex-end;
+}
+.expanded-nav-items p {
+  margin: 0;
+  cursor: pointer;
+  font-size: 14px;
+  color: #324A6D;
+  font-weight: 600;
+  padding-left: 0.5rem;
+  transition: 0.5s;
+}
+
+.admin-menu {
+  position: absolute;
+  bottom: 10px;
+}
+
+mat-icon {
+  cursor: pointer;
+  color: #324A6D;
+}
+
+/*# sourceMappingURL=sidenav.component.css.map */

@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'manrope';
+  src: url("../assets/font/Manrope-VariableFont_wght.ttf");
+  font-weight: 100 900;
+};
+
+
+$primary: #324A6D;
+$success: hsl(102, 52%, 14%);
+$danger: darkred;
+$font-family-sans-serif: manrope, sans-serif;
+$font-size-base: .75rem;
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+/* You can add global styles to this file, and also import other style files */
+
+
+html, body { height: 100%; }
+body { margin: 0; overflow: hidden; box-sizing: border-box}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: hsla(216, 37%, 31%, 50%);
+  opacity: .7;
+  border-radius: 10px;
+}
+
+/* ----- INPUT FIELD STYLING ----- */
+
+::placeholder {
+  color: hsla(216, 37%, 31%, 75%);
+  opacity: 1; /* Firefox */
+  font-size: 12px;
+}
+
+::-ms-input-placeholder { /* Edge 12 -18 */
+  color: hsla(216, 37%, 31%, 75%);
+  font-size: 12px;
+}
+
+input:focus {
+  border: none;
+  outline: 1px solid hsla(216, 37%, 31%, 50%);
+  box-shadow: 0 0 10px 2px hsla(216, 37%, 31%, 50%) ;
+}
+
+label.required::after {
+  content: '*';
+  color: deeppink;
+}
+
+label {
+  font-weight: bold;
+  color: #324A6D;
+}
+
+/* ----- GLOBAL FORM STYLINGS -----*/
+
+
+.form-status {
+  color: lightgreen;
+}
+
+.form-action-btn-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+

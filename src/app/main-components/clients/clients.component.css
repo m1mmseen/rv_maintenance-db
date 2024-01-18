@@ -1,0 +1,17 @@
+:host {
+  box-sizing: border-box;
+  width: 93%;
+  padding: 1rem;
+}
+
+.client {
+  cursor: pointer;
+  transition: 0.2s;
+  width: 32%;
+}
+
+.client:hover {
+  transform: scale3d(1.05, 1.05, 1);
+}
+
+/*# sourceMappingURL=clients.component.css.map */

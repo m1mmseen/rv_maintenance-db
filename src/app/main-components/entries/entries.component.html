@@ -1,0 +1,45 @@
+  <div class="row align-items-start">
+    <div class="col-6">
+      <input type="text" placeholder="Suche nach Gerät, Typ, Techniker oder Datum" class="form-control" [(ngModel)]="entryFilter" #filterInput>
+    </div>
+    <div class="col-3">
+      <div class="btn-group">
+      <button class="btn btn-secondary">Suchen</button>
+        <button class="btn btn-warning" (click)="resetInput(filterInput)">Zurücksetzen</button>
+    </div>
+    </div>
+    <div class="col-3">
+      <div class="dropdown w-100">
+        <button class="btn btn-secondary dropdown-toggle w-75 float-end" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Sortieren nach
+        </button>
+        <ul class="dropdown-menu w-100">
+          <li><a class="dropdown-item" (click)="setSortType('date')">Datum</a></li>
+          <li><a class="dropdown-item" (click)="setSortType('client')">Kunde</a></li>
+          <li><a class="dropdown-item" (click)="setSortType('device')">Geräte</a></li>
+          <li><a class="dropdown-item" (click)="setSortType('type')">Eintragstyp</a></li>
+          <li><a class="dropdown-item" (click)="setSortType('technician')">Techniker</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="form-group mt-3 p-0">
+    <div class="col-12">
+      <ul class="list-group me-3">
+        <li
+          *ngFor="let entry of entries | allKeysFilter:entryFilter | sort:sortType"
+          class="list-group-item list-group-item-action"
+          routerLink="/entry-details/{{entry.id}}">
+          <div class="d-flex w-100 justify-content-between">
+            <p class="mb-1">{{getClientCompany(entry.client)}}</p>
+            <small>{{getDate(entry.id) | date }}</small>
+          </div>
+          <h4 class="mb-1">{{entry.device}}</h4>
+          <div class="d-flex w-100 justify-content-between">
+            <small>{{entry.type}}</small>
+            <small>{{entry.technician}}</small>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>

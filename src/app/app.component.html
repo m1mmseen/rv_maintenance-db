@@ -1,0 +1,16 @@
+<div class="header">
+  <maintenance-header></maintenance-header>
+</div>
+
+
+<div class="content">
+
+    <app-sidenav></app-sidenav>
+
+    <div class="content-container" [@routeAnimation]="getRouteAnimationData(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,21 @@
+:host {
+  display: grid;
+  grid-template-rows: 8svh 92svh;
+  grid-template-areas: "header" "content";
+}
+
+.header {
+  grid-area: header;
+}
+
+.content {
+  grid-area: content;
+  display: flex;
+}
+
+.content-container {
+  width: 100%;
+  padding: 1rem;
+}
+
+/*# sourceMappingURL=app.component.css.map */

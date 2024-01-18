@@ -1,0 +1,24 @@
+:host {
+  box-sizing: border-box;
+  width: 93%;
+  padding: 1rem;
+}
+
+.form-group {
+  height: 84svh;
+  overflow-y: scroll;
+}
+
+.list-group-item {
+  transition: 0.2s;
+  margin: 0.2rem 0;
+  box-shadow: 0 0 5px 1px hsla(216, 37%, 31%, 0.15);
+}
+
+.list-group-item:hover {
+  transform: translateX(5px);
+  background: hsla(216, 37%, 31%, 0.15);
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=mockEntries.component.css.map */
