@@ -3,9 +3,10 @@
   grid-template-rows: 8svh 92svh;
   grid-template-areas: 'header'
 'content';
+
 }
 
-app-header {
+.header {
   grid-area: header;
 }
 
@@ -16,7 +17,5 @@ app-header {
 
 .content-container {
   width: 100%;
-  height: 90svh;
   padding: 1rem;
-
 }

@@ -1,9 +1,9 @@
-import {Entry} from "../../models/entry";
+import {Entry} from "../models/entry";
 
-export const entries: Entry[] = [
+export const mockEntries: Entry[] = [
   {
     id: 1,
-    client: 'John Doe',
+    client: '87eisdfs',
     device: 'Mavic 3',
     type: 'Inbetriebnahme',
     date: new Date(),
@@ -11,7 +11,7 @@ export const entries: Entry[] = [
   },
   {
     id: 2,
-    client: 'John Doe',
+    client: '87eisdfs',
     device: 'Mini 3',
     type: 'Wartung',
     date: new Date(),
@@ -19,7 +19,7 @@ export const entries: Entry[] = [
   },
   {
     id: 3,
-    client: 'Jane Blub',
+    client: '87e45dfs',
     device: 'Agras T30',
     type: 'Inbetriebnahme',
     date: new Date(),
@@ -27,7 +27,7 @@ export const entries: Entry[] = [
   },
   {
     id: 4,
-    client: 'Max Mustermann',
+    client: '87ei78fs',
     device: 'Flarm',
     type: 'Firmware-Update',
     date: new Date(),
@@ -35,55 +35,55 @@ export const entries: Entry[] = [
   },
   {
     id: 5,
-    client: 'Testus Testemann',
+    client: '87e23dfs',
     device: 'Matrice 300',
     type: 'Repair',
     date: new Date(),
     technician: 'Cyrill'
   },
   {
-    id: 4,
-    client: 'Max Mustermann',
+    id: 6,
+    client: '87ei78fs',
     device: 'Flarm',
     type: 'Firmware-Update',
     date: new Date(),
     technician: 'David'
   },
   {
-    id: 5,
-    client: 'Testus Testemann',
+    id: 7,
+    client: '87e23dfs',
     device: 'Matrice 300',
     type: 'Repair',
     date: new Date(),
     technician: 'Cyrill'
   },
   {
-    id: 4,
-    client: 'Max Mustermann',
+    id: 8,
+    client: '87ei78fs',
     device: 'Flarm',
     type: 'Firmware-Update',
     date: new Date(),
     technician: 'David'
   },
   {
-    id: 5,
-    client: 'Testus Testemann',
+    id: 9,
+    client: '87e23dfs',
     device: 'Matrice 300',
     type: 'Repair',
     date: new Date(),
     technician: 'Cyrill'
   },
   {
-    id: 4,
-    client: 'Max Mustermann',
+    id: 10,
+    client: '87ei78fs',
     device: 'Flarm',
     type: 'Firmware-Update',
     date: new Date(),
     technician: 'David'
   },
   {
-    id: 5,
-    client: 'Testus Testemann',
+    id: 11,
+    client: '87e23dfs',
     device: 'Matrice 300',
     type: 'Repair',
     date: new Date(),

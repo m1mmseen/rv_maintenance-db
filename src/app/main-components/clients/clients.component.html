@@ -1,12 +1,14 @@
-
   <div class="row align-items-start">
     <div class="col-6">
-      <input type="text" placeholder="Suche nach Kunde oder Firma" class="form-control" [(ngModel)]="filter">
+      <input type="text" placeholder="Suche nach Kunde oder Firma" class="form-control" [(ngModel)]="filter" #filterInput>
     </div>
     <div class="col-3">
-      <button class="btn btn-secondary">Suchen</button>
+      <div class="btn-group">
+        <button class="btn btn-secondary">Suchen</button>
+        <button class="btn btn-warning" (click)="resetInput(filterInput)">Zurücksetzen</button>
+      </div>
     </div>
-    <div class="col-3">
+    <div class="col">
       <div class="dropdown w-100">
         <button class="btn btn-secondary dropdown-toggle w-75 float-end" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Sortieren nach
@@ -21,12 +23,16 @@
 
   <div class="row align-items-start mt-3">
     <div class="col-sm-12 d-flex flex-wrap">
-      <div class="card me-2 mb-2 shadow-sm client" *ngFor="let client of clients | filter:filter:'name':'company' | sort:sortType">
-        <div class="card-header">
-          {{client.name}}
+      <div
+        class="card me-2 mb-2 shadow-sm client"
+        *ngFor="let client of clients | filter:filter:'name':'company' | sort:sortType"
+        routerLink="/client-details/{{client.id}}">
+        <div class="card-header d-flex flex-row justify-content-between">
+          <span>{{client.company}}</span>
+          <span class="badge" [class]="client.isActive ? 'bg-success' : 'bg-danger'">{{client.status ? 'aktiv' : 'inaktiv'}}</span>
         </div>
         <div class="card-body">
-          <h5 class="card-title">{{client.company}}</h5>
+          <h5 class="card-title">{{client.name}}</h5>
           <p class="card-text">{{client.email}}</p>
           <div class="badge bg-primary me-1" *ngFor="let device of client.devices">{{device.deviceName}}</div>
         </div>

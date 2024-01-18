@@ -25,6 +25,8 @@ import { HttpClientModule} from "@angular/common/http";
 import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { AllKeysFilterPipe } from './pipes/all-keys-filter.pipe';
+import { ClientDetailsComponent } from './main-components/clients/client-details/client-details.component';
+import { EntryDetailsComponent } from './main-components/entries/entry-details/entry-details.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { AllKeysFilterPipe } from './pipes/all-keys-filter.pipe';
     AddClientModalComponent,
     FilterPipe,
     SortPipe,
-    AllKeysFilterPipe
+    AllKeysFilterPipe,
+    ClientDetailsComponent,
+    EntryDetailsComponent
   ],
   imports: [
     BrowserModule,

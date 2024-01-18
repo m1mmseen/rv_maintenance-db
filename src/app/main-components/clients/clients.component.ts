@@ -12,6 +12,7 @@ export class ClientsComponent implements OnInit{
   filter = '';
   sortType = '';
 
+
   constructor(private clientService: ClientService) {
   }
 
@@ -23,4 +24,8 @@ export class ClientsComponent implements OnInit{
     this.sortType = type;
   }
 
+  resetInput(filterInput: HTMLInputElement) {
+    filterInput.value = '';
+    this.filter = '';
+  }
 }

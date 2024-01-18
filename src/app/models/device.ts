@@ -12,5 +12,5 @@ export type Device = {
   deviceNextMaintenance: Date,
   deviceAccessoires: Accessoire[],
   deviceBatteries: Battery[],
-
+  deviceFirmware: string
 }

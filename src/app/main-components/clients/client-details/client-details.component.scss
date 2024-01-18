@@ -1,0 +1,39 @@
+:host {
+  box-sizing: border-box;
+  width: 93%;
+  padding: 1rem;
+}
+
+.back {
+  cursor: pointer;
+}
+.deviceInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+form {
+  box-shadow: 0 0 10px 2px hsla(216, 37%, 31%, 30%);
+  border-radius: 5px;
+}
+
+.clickable-table-row {
+  cursor: pointer;
+  transition: .2s;
+}
+
+.clickable-table-row:hover {
+  transform: translateX(2px);
+  font-weight: 600;
+}
+
+.status {
+  float: right;
+  display: flex;
+  align-items: center;
+
+  input[type=checkbox] {
+    margin-bottom: .4rem;
+    margin-left: .2rem;
+  }
+}

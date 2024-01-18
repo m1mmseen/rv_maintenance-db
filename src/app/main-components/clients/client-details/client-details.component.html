@@ -1,0 +1,59 @@
+<div
+  class="d-flex align-items-center back mb-3"
+  routerLink="/clients">
+  <mat-icon>arrow_left</mat-icon>
+  <span>Kunden Übersicht</span>
+</div>
+<form
+  class="p-3"
+  [formGroup]="clientForm">
+  <fieldset disabled #fieldset>
+    <div class="form-group status">
+      <label for="clientStatus" class="form-label">Aktiv</label>
+      <input type="checkbox" class="form-control-sm" id="clientStatus" formControlName="isActive" checked="{{client.isActive}}">
+    </div>
+    <div class="form-group">
+      <label for="clientMail">Kontakt Email</label>
+      <input type="email" class="form-control" id="clientMail" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label for="clientName">Kunde Ansprechpartner/ Halter</label>
+      <input type="email" class="form-control" id="clientName" formControlName="name">
+    </div>
+    <div class="form-group">
+      <label for="clientCompany">Kunde Firma</label>
+      <input type="email" class="form-control" id="clientCompany" formControlName="company">
+    </div>
+  </fieldset>
+</form>
+
+<button class="btn btn-primary w-25 mt-3" (click)="onEdit(fieldset, editSaveButton)" #editSaveButton>Edit</button>
+<hr>
+<h3>Geräte</h3>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">serial</th>
+      <th scope="col">status</th>
+      <th scope="col">Firmware</th>
+      <th scope="col">installation</th>
+      <th scope="col">Next Maintenance</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      *ngFor="let device of deviceArray; let i = index"
+      routerLink="/device/{{device.deviceSerial}}" fragment="{{client.id}}"
+      class="clickable-table-row">
+      <th scope="row">{{device.deviceName}}</th>
+      <td>{{device.deviceSerial}}</td>
+      <td>{{device.deviceStatus}}</td>
+      <td>{{device.deviceFirmware}}</td>
+      <td>{{device.deviceInstallation | date }}</td>
+      <td>{{device.deviceNextMaintenance | date }}</td>
+    </tr>
+    </tbody>
+  </table>
+<button class="btn btn-primary w-25 mt-3">Neues Gerät hinzufügen</button>
+

@@ -5,6 +5,6 @@ export type Client = {
   name: string,
   company: string,
   email: string,
-  devices: Device[],
-
+  devices: string[],
+  isActive: boolean
 }

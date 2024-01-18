@@ -6,7 +6,10 @@
 
 
 $primary: #324A6D;
+$success: hsl(102, 52%, 14%);
+$danger: darkred;
 $font-family-sans-serif: manrope, sans-serif;
+$font-size-base: .75rem;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/bootstrap/scss/variables";
@@ -18,7 +21,7 @@ $font-family-sans-serif: manrope, sans-serif;
 
 
 html, body { height: 100%; }
-body { margin: 0; overflow: hidden}
+body { margin: 0; overflow: hidden; box-sizing: border-box}
 
 
 /* width */
@@ -81,6 +84,3 @@ label {
   align-items: stretch;
 }
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
