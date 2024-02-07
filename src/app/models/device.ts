@@ -1,7 +1,7 @@
 import {Battery} from "./battery";
 import {Accessoire} from "./accessoire";
 
-export type Device = {
+export interface Device {
   deviceName: string,
   deviceSerial: string,
   deviceFlightControllerSerial: string,

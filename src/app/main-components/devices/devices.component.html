@@ -28,13 +28,13 @@
 <form [formGroup]="deviceForm">
   <div class="accordion" id="deviceForm">
     <!--DEVICE DATA-->
-    <div class="accordion-item">
+    <div class="accordion-item" formGroupName="device">
       <h2 class="accordion-header">
         <div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne"
              aria-expanded="false" aria-controls="collapseOne">
           <p class="w-25">Gerätedaten</p>
           <p
-            *ngIf="inEditingMode"
+            *ngIf="inEditingMode  && deviceForm.get('device')?.valid, else invalidForm"
             class="px-5 form-status">
             <mat-icon>done_all</mat-icon>
             Alle notwendigen Felder gefüllt
@@ -42,15 +42,14 @@
         </div>
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse px-3 py-3" data-bs-parent="#deviceForm">
-        <fieldset disabled>
+        <fieldset [disabled]="!inEditingMode">
           <div class="form-group status">
             <label for="deviceName" class="form-label">Gerätename</label>
             <input type="text" id="deviceName" class="form-control" formControlName="deviceName">
           </div>
           <div class="form-group">
             <label for="deviceSerial">Seriennummer</label>
-           <maintenance-qr-input id="deviceSerial" formControlName="deviceSerial"></maintenance-qr-input>
-<!--             <input type="text" class="form-control" id="deviceSerial" formControlName="deviceSerial"> -->
+             <input type="text" class="form-control" id="deviceSerial" formControlName="deviceSerial">
           </div>
           <div class="form-group">
             <label for="deviceFlightControllerSerial">Flight Controller Serial</label>
@@ -64,13 +63,13 @@
       </div>
     </div>
     <!--ACCESSOIRES-->
-    <div class="accordion-item">
+    <div class="accordion-item" formGroupName="accessoires">
       <h2 class="accordion-header">
         <div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
              aria-expanded="false" aria-controls="collapseTwo">
           <p class="w-25">Sensor/ Aktor</p>
           <p
-            *ngIf="inEditingMode"
+            *ngIf="inEditingMode  && deviceForm.get('accessoires')?.valid, else invalidForm"
             class="px-5 form-status">
             <mat-icon>done_all</mat-icon>
             Alle notwendigen Felder gefüllt
@@ -82,13 +81,13 @@
       </div>
     </div>
     <!--BATTERIES-->
-    <div class="accordion-item">
+    <div class="accordion-item" formGroupName="batteries">
       <h2 class="accordion-header">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           <p class="w-25">Akku</p>
           <p
-            *ngIf="inEditingMode"
+            *ngIf="inEditingMode  && deviceForm.get('batteries')?.valid, else invalidForm"
             class="px-5 form-status">
             <mat-icon>done_all</mat-icon>
             Alle notwendigen Felder gefüllt
@@ -104,7 +103,7 @@
 <hr>
 <h3 class="mt-3">Wartungen</h3>
 <div class="list-group">
-  <div 
+  <div
     *ngFor="let entry of maintenanceEntries"
     class="list-group-item d-flex flex-row justify-content-between">
     <div>
@@ -119,3 +118,9 @@
 </div>
 
 
+<ng-template #invalidForm>
+  <p class="px-5 form-status invalid">
+    <mat-icon>error</mat-icon>
+    Fehler
+  </p>
+</ng-template>
