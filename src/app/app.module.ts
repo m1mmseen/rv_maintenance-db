@@ -27,6 +27,11 @@ import { SortPipe } from './pipes/sort.pipe';
 import { AllKeysFilterPipe } from './pipes/all-keys-filter.pipe';
 import { ClientDetailsComponent } from './main-components/clients/client-details/client-details.component';
 import { EntryDetailsComponent } from './main-components/entries/entry-details/entry-details.component';
+import { RecentEntriesComponent } from './main-components/home/recent-entries/recent-entries.component';
+import { RecentClientsComponent } from './main-components/home/recent-clients/recent-clients.component';
+import { RecentDevicesComponent } from './main-components/home/recent-devices/recent-devices.component';
+import { NextMaintenanceDevicesComponent } from './main-components/home/next-maintenance-devices/next-maintenance-devices.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +50,12 @@ import { EntryDetailsComponent } from './main-components/entries/entry-details/e
     SortPipe,
     AllKeysFilterPipe,
     ClientDetailsComponent,
-    EntryDetailsComponent
+    EntryDetailsComponent,
+    RecentEntriesComponent,
+    RecentClientsComponent,
+    RecentDevicesComponent,
+    NextMaintenanceDevicesComponent,
+
   ],
   imports: [
     BrowserModule,

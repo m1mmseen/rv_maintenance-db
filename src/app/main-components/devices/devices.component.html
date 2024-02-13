@@ -1,126 +1,156 @@
-<div
-  class="d-flex align-items-center back mb-3"
-  routerLink="/client-details/{{clientId}}">
-  <mat-icon>arrow_left</mat-icon>
-  <span>zurück zum Kunden</span>
+<!-- --- CLIENT INFOS --- -->
+<div class="my-2 py-2 border-bottom">
+  <ng-container id="client-infos">
+    <h3>Kunde</h3>
+    <table class="table table-light" *ngIf="client; else selectClient">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Firma</th>
+        <th scope="col">Kontakt Email</th>
+        <th scope="col">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr routerLink="/client-details/{{client?.id}}" class="clickable-table-row">
+        <th scope="row">{{ client?.company }}</th>
+        <td>{{ client?.name }}</td>
+        <td>{{ client?.email }}</td>
+        <td>{{ client?.isActive ? 'Aktiv' : 'Inaktiv' }}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div *ngIf="client && inEditingMode"><button class="btn btn-primary" (click)="resetClient()">Edit</button></div>
+    <ng-template #selectClient>
+      <select class="form-select" aria-label="Default select example" (change)="setClient(client.value)" #client>
+        <option selected>Kunde wählen</option>
+        <option *ngFor="let client of availableClients" value="{{client.id}}">{{client.company}}</option>
+      </select>
+    </ng-template>
+  </ng-container>
 </div>
-<h3>Kunde</h3>
-<table class="table table-light">
-  <thead>
-  <tr>
-    <th scope="col">Name</th>
-    <th scope="col">Firma</th>
-    <th scope="col">Kontakt Email</th>
-    <th scope="col">Status</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <th scope="row">{{client?.company}}</th>
-    <td>{{client?.name}}</td>
-    <td>{{client?.email}}</td>
-    <td>{{client?.isActive ? 'Aktiv' : 'Inaktiv'}}</td>
-  </tr>
-  </tbody>
-</table>
-<hr>
-<h3 class="mt-3">Gerät</h3>
-<form [formGroup]="deviceForm">
-  <div class="accordion" id="deviceForm">
-    <!--DEVICE DATA-->
-    <div class="accordion-item" formGroupName="device">
-      <h2 class="accordion-header">
-        <div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-             aria-expanded="false" aria-controls="collapseOne">
-          <p class="w-25">Gerätedaten</p>
-          <p
-            *ngIf="inEditingMode  && deviceForm.get('device')?.valid, else invalidForm"
-            class="px-5 form-status">
-            <mat-icon>done_all</mat-icon>
-            Alle notwendigen Felder gefüllt
-          </p>
-        </div>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse px-3 py-3" data-bs-parent="#deviceForm">
-        <fieldset [disabled]="!inEditingMode">
-          <div class="form-group status">
+
+<button type="submit" class="btn btn-primary float-end" *ngIf="inEditingMode">Speichern</button>
+
+<!-- ---- DEVICE INFOS ---- -->
+<div class="py-2" id="device-form-tabs">
+  <h3>Gerät</h3>
+  <div class="d-flex align-items-start">
+    <div class="nav flex-column nav me-3" id="tab" role="tablist" aria-orientation="vertical">
+      <button class="nav-link  active" id="deviceData-tab" data-bs-toggle="pill" data-bs-target="#deviceData" type="button" role="tab" aria-controls="deviceData" aria-selected="true">Gerätedaten</button>
+      <button class="nav-link" id="accessories-tab" data-bs-toggle="pill" data-bs-target="#accessories" type="button" role="tab" aria-controls="accessories" aria-selected="false">Zubehör</button>
+      <button class="nav-link" id="batteries-tab" data-bs-toggle="pill" data-bs-target="#batteries" type="button" role="tab" aria-controls="batteries" aria-selected="false">Akku(s)</button>
+      <button class="nav-link" id="maintenance-tab" data-bs-toggle="pill" data-bs-target="#maintenance" type="button" role="tab" aria-controls="maintenance" aria-selected="false" *ngIf="!newForm">Wartung(en)</button>
+    </div>
+    <form class="tab-content w-100 px-2 mx-2" id="tabContent" [formGroup]="deviceForm">
+
+      <div class="tab-pane fade show active w-75" id="deviceData" role="tabpanel" aria-labelledby="deviceData-tab">
+        <fieldset [disabled]="!inEditingMode" formGroupName="device">
+          <div class="form-group mb-3">
             <label for="deviceName" class="form-label">Gerätename</label>
             <input type="text" id="deviceName" class="form-control" formControlName="deviceName">
           </div>
-          <div class="form-group">
-            <label for="deviceSerial">Seriennummer</label>
-             <input type="text" class="form-control" id="deviceSerial" formControlName="deviceSerial">
+          <div class="form-group mb-3">
+            <label for="deviceSerial" class="form-label">Seriennummer</label>
+            <input type="text" class="form-control" id="deviceSerial" formControlName="deviceSerial">
           </div>
-          <div class="form-group">
-            <label for="deviceFlightControllerSerial">Flight Controller Serial</label>
+          <div class="form-group mb-3">
+            <label for="deviceFlightControllerSerial" class="form-label">Flight Controller Serial</label>
             <input type="email" class="form-control" id="deviceFlightControllerSerial" formControlName="deviceFlightControllerSerial">
           </div>
-          <div class="form-group">
-            <label for="deviceDescription">Gerät Beschreibung</label>
+          <div class="form-group mb-3">
+            <label for="deviceDescription" class="form-label">Gerät Beschreibung</label>
             <input type="email" class="form-control" id="deviceDescription" formControlName="deviceDescription">
           </div>
         </fieldset>
       </div>
-    </div>
-    <!--ACCESSOIRES-->
-    <div class="accordion-item" formGroupName="accessoires">
-      <h2 class="accordion-header">
-        <div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-             aria-expanded="false" aria-controls="collapseTwo">
-          <p class="w-25">Sensor/ Aktor</p>
-          <p
-            *ngIf="inEditingMode  && deviceForm.get('accessoires')?.valid, else invalidForm"
-            class="px-5 form-status">
-            <mat-icon>done_all</mat-icon>
-            Alle notwendigen Felder gefüllt
-          </p>
+
+      <div class="tab-pane fade w-75" id="accessories" role="tabpanel" aria-labelledby="accessories-tab">
+        <fieldset>
+          <ng-container formArrayName="deviceAccessories">
+            <ng-container *ngFor="let accessory of accessories.controls; let i = index">
+              <div class="border border-light rounded shadow-sm mb-4 p-2 accessory" [formGroupName]="i">
+                <div class="row">
+                  <div class="col form-group mb-3">
+                    <label for="accessoryName" class="form-label">Zubehör Name</label>
+                    <input type="text" id="accessoryName" class="form-control" formControlName="accessoryName">
+                  </div>
+                  <div class="col form-group mb-3">
+                    <label for="accessorySerial" class="form-label">Seriennummer</label>
+                    <input type="text" id="accessorySerial" class="form-control" formControlName="accessorySerial">
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="accessoryDescription" class="form-label">Beschreibung</label>
+                  <input type="text" id="accessoryDescription" class="form-control"
+                         formControlName="accessoryDescription">
+                </div>
+                <div class="item-actions">
+                  <mat-icon class="delete-icon" (click)="deleteAccessory(i)">delete</mat-icon>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </fieldset>
+        <button class="btn btn-secondary" type="button" (click)="addAccessory()">Zubehör hinzufügen</button>
+      </div>
+
+      <div class="tab-pane fade w-75" id="batteries" role="tabpanel" aria-labelledby="batteries-tab">
+        <fieldset>
+          <ng-container formArrayName="deviceBatteries">
+            <ng-container *ngFor="let battery of batteries.controls; let i = index">
+              <div class="border border-light rounded shadow-sm mb-4 p-2 accessory" [formGroupName]="i">
+                <div class="row">
+                  <div class="col form-group mb-3">
+                    <label for="batteryType" class="form-label">Akku Typ</label>
+                    <input type="text" id="batteryType" class="form-control" formControlName="batteryType">
+                  </div>
+                  <div class="col form-group mb-3">
+                    <label for="batterySerial" class="form-label">Seriennummer</label>
+                    <input type="text" id="batterySerial" class="form-control" formControlName="batterySerial">
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="batteryInstallation" class="form-label">Akku Installation</label>
+                  <input type="date" id="batteryInstallation" class="form-control"
+                         formControlName="batteryInstallation">
+                </div>
+                <div class="item-actions">
+                  <mat-icon class="delete-icon" (click)="deleteBattery(i)">delete</mat-icon>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </fieldset>
+        <button class="btn btn-secondary" type="button" (click)="addBattery()">Akku hinzufügen</button>
+      </div>
+
+      <div class="tab-pane fade w-75" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
+        <div class="list-group" id="maintenance-view">
+            <div
+              *ngFor="let entry of maintenanceEntries"
+              class="list-group-item d-flex flex-row justify-content-between"
+            routerLink="/entry-details/{{entry.id}}">
+                <p class="fw-bold">{{ entry.type }}</p>
+              <div class="d-flex gap-5">
+                <p>{{ entry.date | date }}</p>
+                <p>{{ entry.technician }}</p>
+              </div>
+            </div>
+
         </div>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse px-3 py-3" data-bs-parent="#deviceForm">
-
       </div>
-    </div>
-    <!--BATTERIES-->
-    <div class="accordion-item" formGroupName="batteries">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          <p class="w-25">Akku</p>
-          <p
-            *ngIf="inEditingMode  && deviceForm.get('batteries')?.valid, else invalidForm"
-            class="px-5 form-status">
-            <mat-icon>done_all</mat-icon>
-            Alle notwendigen Felder gefüllt
-          </p>
-        </button>
-      </h2>
-      <div id="collapseThree" class="accordion-collapse collapse px-3 py-3" data-bs-parent="#deviceForm">
 
-      </div>
-    </div>
+    </form>
   </div>
-</form>
-<hr>
-<h3 class="mt-3">Wartungen</h3>
-<div class="list-group">
-  <div
-    *ngFor="let entry of maintenanceEntries"
-    class="list-group-item d-flex flex-row justify-content-between">
-    <div>
-      <h5 class="bg-primary text-light p-2 rounded">{{entry.type}}</h5>
-    </div>
-<div>
-  <h5>{{entry.date | date}}</h5>
-  <h5>{{entry.technician}}</h5>
+
 </div>
 
-  </div>
-</div>
-
-
-<ng-template #invalidForm>
-  <p class="px-5 form-status invalid">
-    <mat-icon>error</mat-icon>
-    Fehler
-  </p>
+<ng-template  #invalidForm>
+  <mat-icon class="form-status invalid">error</mat-icon>
 </ng-template>
+<ng-template #validForm>
+  <mat-icon class="form-status valid" >done_all</mat-icon>
+</ng-template>
+
+

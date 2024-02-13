@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Entry} from "../../models/entry";
 import {EntriesService} from "../../services/entries.service";
 import {ClientService} from "../../services/client.service";
+import {DeviceService} from "../../services/device.service";
 
 @Component({
   selector: 'maintenance-entries',
@@ -15,7 +16,8 @@ export class EntriesComponent implements OnInit{
 
   constructor(
     private entriesService: EntriesService,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private  deviceService: DeviceService
   ) {
   }
 
@@ -39,6 +41,11 @@ export class EntriesComponent implements OnInit{
 
     return this.clientService.getClientNameById(id)
   }
+
+  getDevice(id: string) {
+    return this.deviceService.getDeviceById(id);
+  }
+
 
   getClientCompany(id: string) {
     return this.clientService.getClientCompanyById(id)

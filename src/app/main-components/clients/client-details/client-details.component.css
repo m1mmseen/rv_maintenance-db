@@ -18,15 +18,7 @@ form {
   border-radius: 5px;
 }
 
-.clickable-table-row {
-  cursor: pointer;
-  transition: 0.2s;
-}
 
-.clickable-table-row:hover {
-  transform: translateX(2px);
-  font-weight: 600;
-}
 
 .status {
   float: right;

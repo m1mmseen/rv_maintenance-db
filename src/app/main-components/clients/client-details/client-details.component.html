@@ -44,7 +44,7 @@
     <tbody>
     <tr
       *ngFor="let device of deviceArray; let i = index"
-      routerLink="/device/{{device.deviceSerial}}" fragment="{{client.id}}"
+      routerLink="/device/{{device.deviceSerial}}"
       class="clickable-table-row">
       <th scope="row">{{device.deviceName}}</th>
       <td>{{device.deviceSerial}}</td>

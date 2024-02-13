@@ -1,6 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
 import {Device} from "../models/device";
 import {devices} from "../mock-data/mock-devices";
+import {FormArray, FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -14,4 +15,5 @@ export class DeviceService {
   getDeviceById(id: string) {
     return this.devices.find(device => device.deviceSerial === id)
   }
+
 }

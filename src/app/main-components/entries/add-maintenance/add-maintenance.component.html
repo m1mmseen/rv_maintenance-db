@@ -1,1 +1,23 @@
 <p>add-maintenance works!</p>
+<ng-container>
+  <form [formGroup]="entryForm">
+    <div class="row">
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="form-label">Propeller, Motoren, Arme</label>
+        <div *ngFor="let option of AUDIT_OPTIONS" class="form-check-label">
+          <input type="radio" formControlName="propellerMotorsArms" [value]="option" class="form-check-input">
+          <label class="ps-1">{{ option }}</label>
+        </div>
+      </div>
+      <div class="col">
+        <label class="form-label">Gimbals & Kamera</label>
+        <div *ngFor="let option of AUDIT_OPTIONS" class="form-check-label">
+          <input type="radio" formControlName="gimbalCamera" [value]="option" class="form-check-input">
+          <label class="ps-1">{{ option }}</label>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-container>

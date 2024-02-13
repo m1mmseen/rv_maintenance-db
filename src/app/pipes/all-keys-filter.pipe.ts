@@ -9,6 +9,7 @@ export class AllKeysFilterPipe implements PipeTransform {
 
   transform(value: any, filter:string){
     if (value.length === 0 || filter === '') {
+      console.log(value)
       return value;
     }
 
@@ -20,12 +21,10 @@ export class AllKeysFilterPipe implements PipeTransform {
     const filteredArray = [];
     for (const item of value) {
       for (const key of keys) {
-        console.log(item[key])
         if (item[key].toString().toLowerCase().includes(filter.toLowerCase())) {
           filteredArray.push(item);
         }
       }
-
     }
     return filteredArray;
   }

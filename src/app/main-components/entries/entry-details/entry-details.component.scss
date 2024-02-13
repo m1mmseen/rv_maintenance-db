@@ -1,0 +1,22 @@
+.checkItem {
+  list-style-type: none;
+  display: flex;
+  align-items: flex-start;
+}
+
+mat-icon {
+  font-size: 1rem;
+}
+
+#maintenance-infos {
+  height: 70svh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+@media print {
+  #maintenance-infos {
+    overflow: visible !important;
+  }
+}

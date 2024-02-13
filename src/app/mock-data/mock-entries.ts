@@ -1,93 +1,149 @@
 import {Entry} from "../models/entry";
 
 export const mockEntries: Entry[] = [
-  {
+    {
     id: 1,
-    client: '87eisdfs',
-    device: 'Mavic 3',
+    client: '87e45dfs',
+    device: '29zusf67we0r28f6w',
+    deviceName: 'Mavic 3',
+    date: new Date(2022, 7, 10),
     type: 'Inbetriebnahme',
-    date: new Date(),
-    technician: 'Cyrill'
+    technician: 'Cyrill Schweizer',
+    visualInspectionCase: 'normal',
+    propellerMotorsArms: 'normal',
+    gimbalCamera: 'normal',
+    controller: 'normal',
+    spareParts: '',
+    calibration: [
+      'IMU Calibration',
+      'Compass Calibration',
+      'Vision Sensor Calibration',
+      'Single Motor Test',
+      'GNSS Receiver',
+      'Pumpen kalibriert',
+      'Durchlaufmesser',
+    ],
+    cleanings: [],
+    firmware:
+      {
+        aircraftFirmware: '4.23.0',
+        remoteControllerFirmware: '1.2.2',
+        otherFirmware: '',
+      },
+    swConfigurations: '',
+    testFlights: [
+      'Flugnavigation inkl. GNSS / RTK',
+      'Verbindung Fernsteuerung-Drohne in allen Frequenzbändern',
+      'Bildübermittlung FPV-Kamera',
+      'Bildübermittlung Nutzlast-Kamera',
+      'Antriebssystem, min. 5min Schwebeflug',
+      'Abstands-Sensoren',
+      'Positions-LEDs',
+      'Landeplatz-Beleuchtung',
+      'Strobos'
+
+    ],
+    flightAbnormalities: '',
+    needsToBeRepaired: false,
+    reasonForRepair: '',
+    repairOrderNo: '',
+    operationalStatus: 'Inbetriebnahme durchgeführt'
   },
   {
     id: 2,
-    client: '87eisdfs',
-    device: 'Mini 3',
-    type: 'Wartung',
-    date: new Date(),
-    technician: 'Cyrill'
+    client: '854d5dfs',
+    device: '14dusf67we0r28f6w',
+    deviceName: 'T10',
+    date: new Date(2022, 7, 10),
+    type: 'Inbetriebnahme',
+    technician: 'Jens Adank',
+    visualInspectionCase: 'normal',
+    propellerMotorsArms: 'normal',
+    gimbalCamera: 'normal',
+    controller: 'normal',
+    spareParts: '',
+    calibration: [
+      'IMU Calibration',
+      'Compass Calibration',
+      'Vision Sensor Calibration',
+      'Single Motor Test',
+      'GNSS Receiver',
+      'Pumpen kalibriert',
+      'Durchlaufmesser',
+    ],
+    cleanings: [],
+    firmware:
+      {
+        aircraftFirmware: '4.23.0',
+        remoteControllerFirmware: '1.2.2',
+        otherFirmware: '',
+      },
+    swConfigurations: '',
+    testFlights: [
+      'Flugnavigation inkl. GNSS / RTK',
+      'Verbindung Fernsteuerung-Drohne in allen Frequenzbändern',
+      'Bildübermittlung FPV-Kamera',
+      'Bildübermittlung Nutzlast-Kamera',
+      'Antriebssystem, min. 5min Schwebeflug',
+      'Abstands-Sensoren',
+      'Positions-LEDs',
+      'Landeplatz-Beleuchtung',
+      'Strobos'
+
+    ],
+    flightAbnormalities: '',
+    needsToBeRepaired: false,
+    reasonForRepair: '',
+    repairOrderNo: '',
+    operationalStatus: 'Inbetriebnahme durchgeführt'
   },
   {
     id: 3,
-    client: '87e45dfs',
-    device: 'Agras T30',
+    client: '789d5dfs',
+    device: 'er8usf67we0r28f6w',
+    deviceName: 'Mavic 3 Enterprise',
+    date: new Date(2022, 7, 10),
     type: 'Inbetriebnahme',
-    date: new Date(),
-    technician: 'Manuel'
-  },
-  {
-    id: 4,
-    client: '87ei78fs',
-    device: 'Flarm',
-    type: 'Firmware-Update',
-    date: new Date(),
-    technician: 'David'
-  },
-  {
-    id: 5,
-    client: '87e23dfs',
-    device: 'Matrice 300',
-    type: 'Repair',
-    date: new Date(),
-    technician: 'Cyrill'
-  },
-  {
-    id: 6,
-    client: '87ei78fs',
-    device: 'Flarm',
-    type: 'Firmware-Update',
-    date: new Date(),
-    technician: 'David'
-  },
-  {
-    id: 7,
-    client: '87e23dfs',
-    device: 'Matrice 300',
-    type: 'Repair',
-    date: new Date(),
-    technician: 'Cyrill'
-  },
-  {
-    id: 8,
-    client: '87ei78fs',
-    device: 'Flarm',
-    type: 'Firmware-Update',
-    date: new Date(),
-    technician: 'David'
-  },
-  {
-    id: 9,
-    client: '87e23dfs',
-    device: 'Matrice 300',
-    type: 'Repair',
-    date: new Date(),
-    technician: 'Cyrill'
-  },
-  {
-    id: 10,
-    client: '87ei78fs',
-    device: 'Flarm',
-    type: 'Firmware-Update',
-    date: new Date(),
-    technician: 'David'
-  },
-  {
-    id: 11,
-    client: '87e23dfs',
-    device: 'Matrice 300',
-    type: 'Repair',
-    date: new Date(),
-    technician: 'Cyrill'
-  },
+    technician: 'Manuel Züger',
+    visualInspectionCase: 'normal',
+    propellerMotorsArms: 'normal',
+    gimbalCamera: 'normal',
+    controller: 'normal',
+    spareParts: '',
+    calibration: [
+      'IMU Calibration',
+      'Compass Calibration',
+      'Vision Sensor Calibration',
+      'Single Motor Test',
+      'GNSS Receiver',
+      'Pumpen kalibriert',
+      'Durchlaufmesser',
+    ],
+    cleanings: [],
+    firmware:
+      {
+        aircraftFirmware: '4.23.0',
+        remoteControllerFirmware: '1.2.2',
+        otherFirmware: '',
+      },
+    swConfigurations: '',
+    testFlights: [
+      'Flugnavigation inkl. GNSS / RTK',
+      'Verbindung Fernsteuerung-Drohne in allen Frequenzbändern',
+      'Bildübermittlung FPV-Kamera',
+      'Bildübermittlung Nutzlast-Kamera',
+      'Antriebssystem, min. 5min Schwebeflug',
+      'Abstands-Sensoren',
+      'Positions-LEDs',
+      'Landeplatz-Beleuchtung',
+      'Strobos'
+
+    ],
+    flightAbnormalities: '',
+    needsToBeRepaired: false,
+    reasonForRepair: '',
+    repairOrderNo: '',
+    operationalStatus: 'Inbetriebnahme durchgeführt'
+  }
 ]
 

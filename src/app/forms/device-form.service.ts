@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Device} from "../models/device";
+import {Cycle} from "../models/cycle";
+import {Condition} from "../models/condition";
 
 @Injectable({
   providedIn: 'root'
@@ -15,51 +17,71 @@ export class DeviceFormService {
     deviceStatus: '',
     deviceInstallation: new Date(),
     deviceNextMaintenance: new Date(),
-    deviceAccessoires: [],
+    deviceAccessories: [],
     deviceBatteries: [],
     deviceFirmware: '',
-    maintenanceLog: []
+    maintenanceLog: [],
+    deviceClient: ''
   };
   newForm: boolean = true;
+  createdForm: FormGroup;
 
   constructor(
     private fb: FormBuilder
-  ) { }
+  ) {
+  }
 
-  createDeviceForm(newForm: boolean, device?:Device) {
-    if(!newForm) {
-      this.newForm = false;
-      if (device) {
-        this.device = device;
-      }
-    }
-    return this.fb.group({
+  createDeviceFormWithData(device: Device) {
+    this.createdForm = this.fb.group(device);
+    return this.createdForm;
+  }
+
+  createDeviceForm() {
+    this.createdForm = this.fb.group({
       device: this.fb.group(
         {
-          deviceName: [this.newForm ? '' : this.device.deviceName, [Validators.required]],
-          deviceSerial: [this.newForm ? '' : this.device.deviceSerial, [Validators.required]],
-          deviceFlightControllerSerial: [this.newForm ? '' : this.device.deviceFlightControllerSerial],
-          deviceDescription: [this.newForm ? '' : this.device.deviceDescription],
-          deviceCarePackInfo: [this.newForm? '' : this.device.deviceCarePackInfo],
-          deviceStatus: [this.newForm? '' : this.device.deviceStatus],
-          deviceInstallation: [this.newForm? '' : this.device.deviceInstallation],
-          deviceNextMaintenance: [this.newForm? '' : this.device.deviceNextMaintenance],
-          deviceFirmware: [this.newForm? '' : this.device.deviceFirmware],
+          deviceName: [''],
+          deviceSerial: [''],
+          deviceFlightControllerSerial: [''],
+          deviceDescription: [''],
+          deviceCarePackInfo: [''],
+          deviceStatus: [''],
+          deviceInstallation: [''],
+          deviceNextMaintenance: [''],
+          deviceFirmware: [''],
         }
       ),
-      accessoires: this.fb.group(
-        {
-          deviceAccessoires: [this.newForm? '' : this.device.deviceAccessoires],
-        }
-      ),
-      batteries: this.fb.group(
-        {
-          deviceBatteries: [this.newForm? '' : this.device.deviceBatteries],
-        }
-      ),
-
-
+      deviceAccessories: this.fb.array([]),
+      deviceBatteries: this.fb.array([]),
 
     })
+    return this.createdForm
   }
+
+  get accessories() {
+    return this.createdForm.get('deviceAccessories') as FormArray
+  }
+
+
+  public createAccessory() {
+    return this.fb.group({
+      accessoryName: [''],
+      accessorySerial: [''],
+      accessoryDescription: ['']
+    })
+  }
+
+  public createBattery() {
+    return this.fb.group({
+      batteryType: [''],
+      batterySerial: [''],
+      batteryInstallation: Date,
+      batteryCycleNumbers: [''],
+      batteryProblems: [''],
+      batteryCondition: [''],
+      batteryStatus: ['']
+    })
+  }
+
+
 }

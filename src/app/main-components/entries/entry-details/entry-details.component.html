@@ -1,20 +1,176 @@
 <div
-  class="d-flex align-items-center back"
-  routerLink="/entries">
+  class="d-flex align-items-center justify-content-between back no-print">
+  <div class="d-flex align-items-center"   routerLink="/entries">
   <mat-icon>arrow_left</mat-icon>
-  <span>zurück</span>
+  <span>Einträge Übersicht</span>
+  </div>
+  <mat-icon (click)="printPDF()">print</mat-icon>
 </div>
 
-<h3 *ngIf="entry">Current id: {{entry.id}}</h3>
-<form>
-  <fieldset disabled="disabled">
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+<div id="printable-content">
+<!-- --- GENERAL INFOS --- -->
+<ng-container id="general-infos">
+  <h3>{{ entry.type }}</h3>
+  <table class="table table-light">
+    <thead>
+    <tr>
+      <th scope="col">Kunde</th>
+      <th scope="col">Gerät</th>
+      <th scope="col">Techniker</th>
+      <th scope="col">Datum</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td routerLink="/client-details/{{entry.client}}" class="clickable-table-entry">{{ client?.name }}</td>
+      <td routerLink="/device/{{entry.device}}" class="clickable-table-entry">{{ device?.deviceName }}</td>
+      <td>{{ entry.technician }}</td>
+      <td>{{ entry.date | date}}</td>
+      <td>{{ entry.operationalStatus }}</td>
+
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<!-- --- MAINTENACE INFOS ---- -->
+<ng-container>
+  <div id="maintenance-infos">
+    <div class="row border-bottom py-2 mx-1">
+      <div class="col">
+        <label class="me-2">Sichtprüfung Gehäuse: </label>
+        <span>{{ entry.visualInspectionCase }}</span>
+      </div>
+      <div class="col">
+        <label class="me-2">Propeller, Motoren, Arme: </label>
+        <span>{{ entry.propellerMotorsArms }}</span>
+      </div>
+      <div class="col">
+        <label class="me-2">Gimbals & Kamera: </label>
+        <span>{{ entry.gimbalCamera }}</span>
+      </div>
+      <div class="col">
+        <label class="me-2">Controller: </label>
+        <span>{{ entry.controller }}</span>
+      </div>
+    </div>
+    <div class="row border-bottom py-2 mx-1">
+      <div class="col">
+        <label class="me-2">Ersatzteile: </label>
+        <span>{{ entry.spareParts === '' ? 'keine' : entry.spareParts }}</span>
+      </div>
+      <div class="col">
+        <label class="me-2">Kalibrierung: </label>
+        <div *ngFor="let calibration of entry.calibration" class="checkItem">
+          <mat-icon>check</mat-icon>
+          <span>{{ calibration }}</span>
+        </div>
+        <span *ngIf="entry.calibration.length === 0">keine</span>
+      </div>
+      <div class="col">
+        <label class="me-2">Reinigung: </label>
+        <li *ngFor="let cleaning of entry.cleanings">{{ cleaning }}</li>
+        <span *ngIf="entry.cleanings.length === 0">keine</span>
+      </div>
+      <div class="col">
+        <label class="me-2">Firmware: </label>
+        <li class="list-unstyled">Aircraft: {{ entry.firmware.aircraftFirmware }}</li>
+        <li class="list-unstyled">Remote Controller: {{ entry.firmware.remoteControllerFirmware }}</li>
+        <li class="list-unstyled">Andere Firmware: {{ entry.firmware.otherFirmware }}</li>
+      </div>
+    </div>
+    <div class="row border-bottom py-2 mx-1">
+      <div class="col-3">
+        <label class="me-2">SW-Konfiguration: </label>
+        <span>{{ entry.swConfigurations === '' ? 'keine' : entry.swConfigurations }}</span>
+      </div>
+      <div class="col-6">
+        <label class="me-2">Testflüge: </label>
+        <div *ngFor="let testFlight of entry.testFlights" class="checkItem">
+          <mat-icon>check</mat-icon>
+          <span>{{ testFlight }}</span>
+        </div>
+        <span *ngIf="entry.calibration.length === 0">keine</span>
+      </div>
+      <div class="col-3">
+        <label class="me-2">Auffälligkeiten beim Flug: </label>
+        <span>{{ entry.flightAbnormalities === '' ? 'keine' : entry.flightAbnormalities }}</span>
+      </div>
+    </div>
+    <div class="row border-bottom py-2 mx-1">
+      <div class="col-3 form-check">
+        <label  class="form-check-label me-2">Reparatur notwendig: </label>
+        <span>{{entry.needsToBeRepaired ? 'ja' : 'nein'}}</span>
+      </div>
+      <div class="col-6" *ngIf="entry.needsToBeRepaired">
+        <label class="me-2">Begründung: </label>
+        <span>{{ entry.reasonForRepair }}</span>
+      </div>
+      <div class="col-3" *ngIf="entry.needsToBeRepaired">
+        <label class="me-2">Auftragsnumer (optional): </label>
+        <span>{{ entry.repairOrderNo }}</span>
+      </div>
+    </div>
+    <ng-container>
+      <div class="row border-bottom py-2 mx-2">
+        <h3>Zubehör</h3>
+        <div class="col-3 d-flex flex-column" *ngFor="let accessory of device?.deviceAccessories">
+          <div>
+            <label class="form-label me-2">Name: </label>
+            <span>{{ accessory.accessoryName }}</span>
+          </div>
+          <div>
+            <label class="form-label me-2">Seriennummer: </label>
+            <span>{{ accessory.accessorySerial }}</span>
+          </div>
+          <div>
+            <label class="form-label me-2">Beschreibung: </label>
+            <span>{{ accessory.accessoryDescription }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container>
+      <div class="row border-bottom py-2 mx-2">
+        <h3>Akkus</h3>
+        <div class="col-3" *ngFor="let battery of device?.deviceBatteries">
+          <div>
+            <label class="form-label me-2">Status: </label>
+            <span>{{ battery.batteryStatus }}</span>
+          </div>
+          <div class="d-flex flex-column">
+            <div>
+              <label class="form-label me-2">Typ: </label>
+              <span>{{ battery.batteryType }}</span>
+            </div>
+            <div>
+              <label class="form-label me-2">Seriennummer: </label>
+              <span>{{ battery.batterySerial }}</span>
+            </div>
+            <div>
+              <label class="form-label me-2">Installation: </label>
+              <span>{{ battery.batteryInstallation | date }}</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </ng-container>
   </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-  </fieldset>
-</form>
+</ng-container>
+
+</div>
+
+
+
+<ng-template  #invalidForm>
+  <mat-icon class="form-status invalid">error</mat-icon>
+</ng-template>
+<ng-template #validForm>
+  <mat-icon class="form-status valid" >done_all</mat-icon>
+</ng-template>
+
+
+
+

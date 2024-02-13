@@ -1,0 +1,13 @@
+<a class="link-danger link-underline-opacity-10 float-end">Überfällige Wartungen: {{ overdueMaintenances.length }}</a>
+  <p>{{ currentDate | date }}</p>
+<h3>Anstehende Wartungen</h3>
+  <div class="list-group">
+    <div class="list-group-item" *ngFor="let device of nextMaintenances" routerLink="/device/{{device.deviceSerial}}">
+      <div class="d-flex justify-content-between">
+        <small>{{ device.deviceName }}</small>
+        <small>{{ device.deviceNextMaintenance | date }}</small>
+      </div>
+    </div>
+  </div>
+
+

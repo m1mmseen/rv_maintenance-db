@@ -13,11 +13,11 @@ export class ClientService {
   constructor(private http: HttpClient) { }
 
   getClients() {
-    this.http.get<Client[]>(this.API_URL).pipe();
+    return this.http.get<Client[]>(this.API_URL).pipe();
   }
 
   getClientById(id: string) {
-    this.http.get<Client>(this.API_URL, {
+    return this.http.get<Client>(this.API_URL, {
       params: new HttpParams().set('id', id)
     })
   }
